@@ -88,12 +88,14 @@ let buyCount = 1;
 
 document.getElementById("box").onclick = () => {
     const box = document.getElementById('box');
-  box.classList.add('bump');
+  box.classList.remove('bump');
+    void box.offsetWidth;
+    box.classList.add('bump');
 const gained = Math.round((add+upgrades) * multiplier);
 current = money + gained;
 money = current;
     if (money >= 50) {
-        money50 = true;
+        conditions.money50 = true;
     }
 
 document.getElementById('count').textContent = `${money}`;
