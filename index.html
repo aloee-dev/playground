@@ -75,12 +75,15 @@ let upgrades = 1;
 let add = 0;
 let buyCount = 1;
 
+    // figure out how to render how many times you buy it without doing a bunch of let upgradebought = 0
+
     const sUpgrades = [
-        { id: "a", name: "Better Clicks", descript: "Increases points gained per click by 1", cost: 10, baseCost: 10 }
+        { id: "a", name: "Better Clicks", descript: "Increases points gained per click by 1", cost: 10, baseCost: 10 },
+        { id: "b", name: "figure out the theme", descript: "Generates 1 point every x seconds", cost: 50, baseCost: 50, condition: "money50" }
         ];
 
     let conditions = {
-        number1: false
+        money50: false
     };
 
 document.getElementById("box").onclick = () => {
@@ -89,6 +92,9 @@ document.getElementById("box").onclick = () => {
 const gained = Math.round((add+upgrades) * multiplier);
 current = money + gained;
 money = current;
+    if (money >= 50) {
+        money50 = true;
+    }
 
 document.getElementById('count').textContent = `${money}`;
 };
@@ -141,6 +147,16 @@ buyCount = 1;
             renderUpgrades();
         }
 });
+
+    function prestige() {
+        //reset everything to base price
+        // set the bought count to 0
+        // all flags to false
+        money = 0;
+        current = 0;
+        upgrades = 0;
+        renderUpgrades();
+    }
 
     renderUpgrades();
 
