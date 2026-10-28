@@ -109,6 +109,7 @@ document.getElementById('count').textContent = `${money}`;
 
     window.addEventListener("keydown", (e) => {
     if (e.key === "Shift") {
+        if (e.repeat) return;
         buyCount = 10;
         renderUpgrades();
     }
