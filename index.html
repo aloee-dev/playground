@@ -62,7 +62,7 @@ let add = 0;
 let buyCount = 1;
 
     const sUpgrades = [
-        { id: "a", name: "Better Clicks", descript: "Increases points gained per click by 1", cost: 10 }
+        { id: "a", name: "Better Clicks", descript: "Increases points gained per click by 1", cost: 10, baseCost: 10 }
         ];
 
     let conditions = {
@@ -104,6 +104,7 @@ document.getElementById('count').textContent = `${money}`;
             money -= (finalCost);
             if (upgrade.id === "a") {
                 upgrades += buyCount;
+                upgrade.cost = upgrade.cost + (10 * buyCount);
             }
             document.getElementById('count').textContent = `${money}`;
             renderUpgrades();
