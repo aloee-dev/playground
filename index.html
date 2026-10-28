@@ -30,7 +30,7 @@
     height: 100%;
     background-color: #808080;
     left: 75%;
-    padding: 10px;
+    margin-left: 10px;
 }
 
 #count {
@@ -79,8 +79,8 @@ let buyCount = 1;
     // figure out how to render how many times you buy it without doing a bunch of let upgradebought = 0
 
     const sUpgrades = [
-        { id: "a", name: "Better Clicks", descript: "Increases points gained per click by 1", cost: 10, baseCost: 10 },
-        { id: "b", name: "figure out the theme", descript: "Generates 1 point every x seconds", cost: 50, baseCost: 50, condition: "money50" }
+        { id: "a", name: "Better Clicks", descript: "Increases points gained per click by 1", cost: 10, baseCost: 10, bought: 0 },
+        { id: "b", name: "figure out the theme", descript: "Generates 1 point every x seconds", cost: 50, baseCost: 50, condition: "money50", bought: 0 }
         ];
 
     let conditions = {
@@ -113,7 +113,7 @@ document.getElementById('count').textContent = `${money}`;
         }
             const upgradeContainer = document.createElement("div");
             upgradeContainer.innerHTML = `
-            <h3>${u.name}</h3>
+            <h3>${u.name} (${u.bought})</h3>
             <p>${u.descript}</p>
             <button id="buy-${u.id}">(${u.cost * buyCount})</button>
         `;
@@ -133,6 +133,7 @@ document.getElementById('count').textContent = `${money}`;
                 upgrade.cost = upgrade.cost + (10 * buyCount);
             }
             document.getElementById('count').textContent = `${money}`;
+            upgrade.bought = upgrade.bought + buyCount;
             renderUpgrades();
         }
     }
@@ -155,6 +156,7 @@ buyCount = 1;
     function prestige() {
         sUpgrades.forEach(u => {
         u.cost = u.baseCost;
+            u.bought = 0;
     });
         // set the bought count to 0
         // all flags to false
