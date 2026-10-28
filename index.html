@@ -110,6 +110,19 @@ document.getElementById('count').textContent = `${money}`;
         }
     }
 
+    window.addEventListener("keydown", (e) => {
+    if (e.key === "Shift") {
+        buyCount = 10;
+        renderUpgrades();
+    }
+});
+
+    window.addEventListener("keyup", (e) => {
+        if (e.key === "Shift") {
+buyCount = 1;
+            renderUpgrades();
+        }
+});
 
     renderUpgrades();
 
