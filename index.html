@@ -74,12 +74,17 @@ let multiplier = 1;
 let upgrades = 1;
 let add = 0;
 let buyCount = 1;
+let strength = 0;
+let endurance = 0;
+let mental = 0;
+let speed = 0;
+let mutation = 0;
 
     // figure out how to render how many times you buy it without doing a bunch of let upgradebought = 0
 
     const sUpgrades = [
-        { id: "a", name: "Better Clicks", descript: "Increases points gained per click by 1", cost: 10, baseCost: 10, bought: 0 },
-        { id: "b", name: "figure out the theme", descript: "Generates 1 point every x seconds", cost: 50, baseCost: 50, condition: "money50", bought: 0 }
+        { id: "a", name: "Improved Studies", descript: "Increases power gained per click by 1", cost: 10, baseCost: 10, bought: 0 },
+        { id: "b", name: "Passive Learning", descript: "Generates 1 power every x seconds", cost: 50, baseCost: 50, condition: "money50", bought: 0 }
         ];
 
     let conditions = {
@@ -157,7 +162,6 @@ buyCount = 1;
         u.cost = u.baseCost;
             u.bought = 0;
     });
-        // set the bought count to 0
         // all flags to false
         money = 0;
         current = 0;
