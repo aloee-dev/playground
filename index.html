@@ -96,6 +96,7 @@ current = money + gained;
 money = current;
     if (money >= 50) {
         conditions.money50 = true;
+        renderUpgrades();
     }
 
 document.getElementById('count').textContent = `${money}`;
@@ -151,12 +152,14 @@ buyCount = 1;
 });
 
     function prestige() {
-        //reset everything to base price
+        sUpgrades.forEach(u => {
+        u.cost = u.baseCost;
+    });
         // set the bought count to 0
         // all flags to false
         money = 0;
         current = 0;
-        upgrades = 0;
+        upgrades = 1;
         renderUpgrades();
     }
 
