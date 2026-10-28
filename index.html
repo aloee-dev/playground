@@ -59,6 +59,7 @@ let current = 0;
 let multiplier = 1;
 let upgrades = 1;
 let add = 0;
+let buyCount = 1;
 
     const sUpgrades = [
         { id: "a", name: "Better Clicks", descript: "Increases points gained per click by 1", cost: 10 }
@@ -73,24 +74,42 @@ const gained = Math.round((add+upgrades) * multiplier);
 current = money + gained;
 money = current;
 
-const moneyC = document.getElementById('count');
-moneyC.textContent = `${money}`;
+document.getElementById('count').textContent = `${money}`;
 };
 
     function renderUpgrades() {
         const shopContainer = document.getElementById("shop");
-        const name = document.getElementById("upgrade-name");
-        const descr = document.getElementById("upgrade-explain");
         shopContainer.innerHTML = "";
         sUpgrades.forEach(u => {
 
         if (u.condition && !conditions[u.condition]) {
             return;
         }
-            name.textContent = u.name;
-            descr.textContent = u.descript;
+            const upgradeContainer = document.createElement("div");
+            upgradeContainer.innerHTML = `
+            <h3>${u.name}</h3>
+            <p>${u.descript}</p>
+            <button id="buy-${u.id}">(${u.cost * buyCount})</button>
+        `;
+        shopContainer.appendChild(upgradeContainer);
+            document.getElementById(`buy-${u.id}`).onclick = () => {
+            buyUpgrade(u);
+        };
         });
     }
+
+    function buyUpgrade(upgrade) {
+        const finalCost = upgrade.cost * buyCount;
+        if (money >= (finalCost)) {
+            money -= (finalCost);
+            if (upgrade.id === "a") {
+                upgrades += buyCount;
+            }
+            document.getElementById('count').textContent = `${money}`;
+            renderUpgrades();
+        }
+    }
+
 
     renderUpgrades();
 
