@@ -60,6 +60,14 @@ let multiplier = 1;
 let upgrades = 1;
 let add = 0;
 
+    const sUpgrades = [
+        { id: "a", name: "Better Clicks", descript: "Increases points gained per click by 1", cost: 10 }
+        ];
+
+    let conditions = {
+        number1: false
+    };
+
 document.getElementById("box").onclick = () => {
 const gained = Math.round((add+upgrades) * multiplier);
 current = money + gained;
@@ -68,6 +76,21 @@ money = current;
 const moneyC = document.getElementById('count');
 moneyC.textContent = `${money}`;
 };
+
+    function renderUpgrades() {
+        const shopContainer = document.getElementById("shop");
+        const name = document.getElementById("upgrade-name");
+        const descr = document.getElementById("upgrade-explain");
+        shopContainer.innerHTML = "";
+        sUpgrades.forEach(u => {
+
+        if (u.condition && !conditions[u.condition]) {
+            return;
+        }
+            name.textContent = u.name;
+            descr.textContent = u.descript;
+        });
+    }
 
 </script>
 
