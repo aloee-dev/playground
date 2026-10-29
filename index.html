@@ -111,12 +111,17 @@ let speed = 0;
 let mutation = 0;
 let intervalSpeed = 1;
 
+let inventory = new Map();
+let shownDialogue = new Set();
+
 let DVDId = null;
 let DVDInterval = 60000;
 
     // challenges i asked my brother to give:
     // if you don't press the button the last 60 seconds the button starts moving like the DVD thing
-    // make the idle stuff actually give stuff. tbh useless challenge. "code your game" okay HALFWAY DONE
+    // make the idle stuff actually give stuff. tbh useless challenge. "code your game" okay DONE
+
+    // ideas: add chests, add lore
 
     const sUpgrades = [
         { id: "a", name: "Improved Studies", descript: "Increases power gained per click by 1", cost: 10, baseCost: 10, bought: 0, type: "multi" },
@@ -251,6 +256,21 @@ buyCount = 1;
             loop();
             }
     });
+    }
+
+    function openChest (chest) {
+        let roll = Math.floor(Math.random() * 100);
+        if (chest === "wooden") {
+            woodChest(roll);
+        }
+    }
+
+    function giveItem (item, amount) {
+        const currentCount = inventory.get(item) || 0;
+        inventory.set(item, currentCount + amount);
+    }
+
+    function woodChest (roll) {
     }
 
     renderUpgrades();
