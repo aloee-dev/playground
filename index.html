@@ -15,6 +15,7 @@
 }
 
     #stat-box {
+    display: none;
     height: 80vh;
     width: 50%;
     overflow-y: auto;
@@ -60,7 +61,7 @@
     position: absolute;
     width: 25%;
     height: 100%;
-    top: 20px;
+    top: 30px;
     background-color: #808080;
     left: 75%;
 }
@@ -145,6 +146,8 @@ let shownDialogue = new Set();
 let DVDId = null;
 let DVDInterval = 60000;
 
+let currentTab = 1;
+
     // challenges i asked my brother to give:
     // if you don't press the button the last 60 seconds the button starts moving like the DVD thing
     // make the idle stuff actually give stuff. tbh useless challenge. "code your game" okay DONE
@@ -163,6 +166,43 @@ let DVDInterval = 60000;
         money200: false
     };
 
+        const tab1 = document.getElementById('tab1');
+        const tab2 = document.getElementById('tab2');
+        const tab3 = document.getElementById('tab3');
+        const tab4 = document.getElementById('tab4');
+        const tab5 = document.getElementById('tab5');
+        const training = document.getElementById('tab1-training');
+        //const schooling = document.getElementById('tab2-schooling');
+        //const mutagens = document.getElementById('tab3-mutagen-station');
+        //const achievements = document.getElementById('tab4-achievements');
+        const stats = document.getElementById('tab5-stats');
+    
+    document.getElementById("tab1").onclick = () => {
+        currentTab = 1;
+        tab1.classList.add('selected');
+        if (currentTab === 2) tab2.classList.remove('selected');
+        if (currentTab === 3) tab3.classList.remove('selected');
+        if (currentTab === 4) tab4.classList.remove('selected');
+        if (currentTab === 5) {
+            tab5.classList.remove('selected');
+            stats.style.display = "none";
+        }
+    }
+
+    document.getElementById("tab5").onclick = () => {
+        currentTab = 5;
+        stats.style.display = "block";
+        tab5.classList.add('selected');
+        if (currentTab === 2) tab2.classList.remove('selected');
+        if (currentTab === 3) tab3.classList.remove('selected');
+        if (currentTab === 4) tab4.classList.remove('selected');
+        if (currentTab === 1) {
+            tab1.classList.remove('selected');
+            training.style.display = "none";
+        }
+    }
+        
+ 
 document.getElementById("box").onclick = () => {
     const box = document.getElementById('box');
   box.classList.remove('bump');
@@ -301,6 +341,7 @@ buyCount = 1;
 
     function woodChest (roll) {
     }
+
 
     renderUpgrades();
     passiveIncome();
