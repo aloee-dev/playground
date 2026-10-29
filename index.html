@@ -14,8 +14,11 @@
     background: white;
 }
 
+    #tab5-stats {
+        display: none;
+    }
+    
     #stat-box {
-    display: none;
     height: 80vh;
     width: 50%;
     overflow-y: auto;
@@ -179,6 +182,7 @@ let currentTab = 1;
     
     document.getElementById("tab1").onclick = () => {
         tab1.classList.add('selected');
+        training.style.display = "block";
         if (currentTab === 2) tab2.classList.remove('selected');
         if (currentTab === 3) tab3.classList.remove('selected');
         if (currentTab === 4) tab4.classList.remove('selected');
