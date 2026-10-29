@@ -82,8 +82,9 @@
 
     <div id="tab-list">
 <div id="tab1" class="tab-btn selected">Training</div>
-<div id="tab2" class="tab-btn locked">Idk</div>
-<div id="tab3" class="tab-btn">Stats</div>
+<div id="tab2" class="tab-btn locked">Schooling</div>
+<div id="tab3" class="tab-btn">Achievements</div>
+<div id="tab4" class="tab-btn">Stats</div>
     </div>
 
         
@@ -106,17 +107,22 @@ let endurance = 0;
 let mental = 0;
 let speed = 0;
 let mutation = 0;
+let intervalSpeed = 1;
 
     // challenges i asked my brother to give:
     // if you don't press the button the last 60 seconds the button starts moving like the DVD thing
+    // make the idle stuff actually give stuff. tbh useless challenge. "code your game" okay
 
     const sUpgrades = [
         { id: "a", name: "Improved Studies", descript: "Increases power gained per click by 1", cost: 10, baseCost: 10, bought: 0 },
-        { id: "b", name: "Passive Learning", descript: "Generates 1 power every x seconds", cost: 50, baseCost: 50, condition: "money50", bought: 0 }
+        { id: "b", name: "Passive Learning", descript: "Generates 1 power every 3 seconds", cost: 50, baseCost: 50, condition: "money50", bought: 0, interval: 3000, passive: 1 },
+        { id: "c", name: "Better Books", descript: "Generates 3 power every 5 seconds", cost: 250, baseCost: 250, condition: "money200", bought: 0, interval: 5000, passive: 3 },
+        { id: "d", name: "The Academy", descript: "Unlocks schooling", cost: 5000, baseCost: 5000, condition: "money50", bought: 0, }
         ];
 
     let conditions = {
-        money50: false
+        money50: false,
+        money200: false
     };
 
 document.getElementById("box").onclick = () => {
@@ -127,11 +133,7 @@ document.getElementById("box").onclick = () => {
 const gained = Math.round((add+upgrades) * multiplier);
 current = money + gained;
 money = current;
-    if (money >= 50) {
-        conditions.money50 = true;
-        renderUpgrades();
-    }
-
+checkConditions();
 document.getElementById('count').textContent = `${money}`;
 };
 
@@ -197,7 +199,22 @@ buyCount = 1;
         renderUpgrades();
     }
 
+    function checkConditions() {
+        if (money >= 50) {
+        conditions.money50 = true;
+    }
+        if (money >= 200) {
+        conditions.money200 = true;
+    }
+        renderUpgrades();
+    }
+
+    function passiveIncome () {
+        // stuff
+    }
+
     renderUpgrades();
+    passiveIncome();
 
 </script>
 
