@@ -14,6 +14,19 @@
     background: white;
 }
 
+    #stat-box {
+    height: 80vh;
+    width: 50%;
+    overflow-y: auto;
+    border: 1px solid #black;
+    padding: 15px;
+    box-sizing: border-box;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
     .tab-btn {
         display: inline-block;
         font-size: 16px;
@@ -88,8 +101,19 @@
 <div id="tab5" class="tab-btn">Stats</div>
     </div>
 
+    <div id="tab5">
+        <div id="stat-box">
+            <div id="stat-clicks">Total Clicks: 0</div>
+            <div id="stat-upgrades">Upgrades Bought: 0</div>
+            <div id="stat-prestiges">Prestiges: 0</div>
+            <div id="stat-cmultiplier">Current Click Multiplier: 0</div>
+            <div id="stat-imultiplier">Current Idle Multiplier: 0</div>
+        </div>
+    </div>
+            
+
         
-<div id="tab1-training">
+<div id="tab1">
 <div id="box"></div>
 <div id="count">0</div>
 <div id="shop"></div>
