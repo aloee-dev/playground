@@ -235,8 +235,10 @@ buyCount = 1;
         const loop = () =>
             u.timerId = setTimeout(() => {
             // the thing here
-            loop();
-        }, u.interval );
+                loop();
+                checkConditions();
+                document.getElementById('count').textContent = `${money}`;
+        }, u.interval / intervalSpeed );
             loop();
             }
     });
