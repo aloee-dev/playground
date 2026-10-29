@@ -178,7 +178,6 @@ let currentTab = 1;
         const stats = document.getElementById('tab5-stats');
     
     document.getElementById("tab1").onclick = () => {
-        currentTab = 1;
         tab1.classList.add('selected');
         if (currentTab === 2) tab2.classList.remove('selected');
         if (currentTab === 3) tab3.classList.remove('selected');
@@ -187,10 +186,10 @@ let currentTab = 1;
             tab5.classList.remove('selected');
             stats.style.display = "none";
         }
+        currentTab = 1;
     }
 
     document.getElementById("tab5").onclick = () => {
-        currentTab = 5;
         stats.style.display = "block";
         tab5.classList.add('selected');
         if (currentTab === 2) tab2.classList.remove('selected');
@@ -200,6 +199,7 @@ let currentTab = 1;
             tab1.classList.remove('selected');
             training.style.display = "none";
         }
+        currentTab = 5;
     }
         
  
