@@ -241,7 +241,8 @@ buyCount = 1;
                 if (u.timerId !== null) return;
         const loop = () =>
             u.timerId = setTimeout(() => {
-            // the thing here
+            const idlegained = Math.round((u.passive) * multiplier * idleM * u.bought);
+                money += idlegained;
                 loop();
                 checkConditions();
                 document.getElementById('count').textContent = `${money}`;
