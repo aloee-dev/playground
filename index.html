@@ -117,8 +117,8 @@ let intervalSpeed = 1;
 
     const sUpgrades = [
         { id: "a", name: "Improved Studies", descript: "Increases power gained per click by 1", cost: 10, baseCost: 10, bought: 0, type: "multi" },
-        { id: "b", name: "Passive Learning", descript: "Generates 1 power every 3 seconds", cost: 50, baseCost: 50, condition: "money50", bought: 0, interval: 3000, passive: 1, type: "multi" },
-        { id: "c", name: "Better Books", descript: "Generates 3 power every 5 seconds", cost: 250, baseCost: 250, condition: "money200", bought: 0, interval: 5000, passive: 3, type: "multi" },
+        { id: "b", name: "Passive Learning", descript: "Generates 1 power every 3 seconds", cost: 50, baseCost: 50, condition: "money50", bought: 0, interval: 3000, passive: 1, timerId: null, type: "multi" },
+        { id: "c", name: "Better Books", descript: "Generates 3 power every 5 seconds", cost: 250, baseCost: 250, condition: "money200", bought: 0, interval: 5000, passive: 3, timerId: null, type: "multi" },
         { id: "d", name: "The Academy", descript: "Unlocks schooling", cost: 5000, baseCost: 5000, condition: "money50", bought: 0, type: "single" }
         ];
 
@@ -229,7 +229,18 @@ buyCount = 1;
     }
 
     function passiveIncome () {
-        // stuff
+        sUpgrades.forEach(u => {
+            if (u.bought >= 1) {
+                if (u.timerId !== null) return;
+        const loop = () =>
+            u.timerId = setTimeout(() => {
+            // the thing here
+            loop();
+        }, u.interval );
+            };
+            loop();
+            }
+    });
     }
 
     renderUpgrades();
