@@ -117,7 +117,7 @@ let intervalSpeed = 1;
         { id: "a", name: "Improved Studies", descript: "Increases power gained per click by 1", cost: 10, baseCost: 10, bought: 0 },
         { id: "b", name: "Passive Learning", descript: "Generates 1 power every 3 seconds", cost: 50, baseCost: 50, condition: "money50", bought: 0, interval: 3000, passive: 1 },
         { id: "c", name: "Better Books", descript: "Generates 3 power every 5 seconds", cost: 250, baseCost: 250, condition: "money200", bought: 0, interval: 5000, passive: 3 },
-        { id: "d", name: "The Academy", descript: "Unlocks schooling", cost: 5000, baseCost: 5000, condition: "money50", bought: 0, }
+        { id: "d", name: "The Academy", descript: "Unlocks schooling", cost: 5000, baseCost: 5000, condition: "money50", bought: 0, type: "single" }
         ];
 
     let conditions = {
@@ -145,11 +145,19 @@ document.getElementById('count').textContent = `${money}`;
         if (u.condition && !conditions[u.condition]) {
             return;
         }
+            if (u.type === "single" && u.bought >= 1) {
+            return; 
+        }
+            let displayCost = u.cost
+            if (u.type !== "single") {
+                displayCost = u.cost * buyCount;
+            }
+                
             const upgradeContainer = document.createElement("div");
             upgradeContainer.innerHTML = `
             <h3>${u.name} (${u.bought})</h3>
             <p>${u.descript}</p>
-            <button id="buy-${u.id}">(${u.cost * buyCount})</button>
+            <button id="buy-${u.id}">(${displayCost})</button>
         `;
         shopContainer.appendChild(upgradeContainer);
             document.getElementById(`buy-${u.id}`).onclick = () => {
@@ -159,6 +167,14 @@ document.getElementById('count').textContent = `${money}`;
     }
 
     function buyUpgrade(upgrade) {
+
+        if (upgrade.type === "single") {
+            if (money >= (upgrade.cost) {
+                money -= (upgrade.cost);
+                upgrade.bought++
+                }
+            }
+            if (upgrade.type === "multi") {
         const finalCost = upgrade.cost * buyCount;
         if (money >= (finalCost)) {
             money -= (finalCost);
@@ -166,8 +182,10 @@ document.getElementById('count').textContent = `${money}`;
                 upgrades += buyCount;
                 upgrade.cost = upgrade.cost + (10 * buyCount);
             }
-            document.getElementById('count').textContent = `${money}`;
             upgrade.bought = upgrade.bought + buyCount;
+        }
+            }
+            document.getElementById('count').textContent = `${money}`;
             renderUpgrades();
         }
     }
