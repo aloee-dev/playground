@@ -188,6 +188,8 @@ let currentTab = 1;
     
     document.getElementById("tab1").onclick = () => {
         tab1.classList.add('selected');
+        const box = document.getElementById('box');
+          box.classList.remove('bump');
         training.style.display = "block";
         if (currentTab === 2) tab2.classList.remove('selected');
         if (currentTab === 3) tab3.classList.remove('selected');
