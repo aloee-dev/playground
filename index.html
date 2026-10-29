@@ -211,6 +211,10 @@ buyCount = 1;
 
     function prestige() {
         sUpgrades.forEach(u => {
+            if (u.timerId) {
+                clearTimeout(u.timerId);
+                u.timerId = null;
+            }
         u.cost = u.baseCost;
             u.bought = 0;
     });
