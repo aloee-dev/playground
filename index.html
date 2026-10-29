@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">  
-<title>Testin</title>
+<title>Power Training Simulator</title>
 <style>
 
     body, html {
@@ -98,7 +98,8 @@
 
 let money = 0;
 let current = 0;
-let multiplier = 1;
+let multiplier = 1; // global
+let clickM = 1; // just multiplier for clicks
 let upgrades = 1;
 let add = 0;
 let buyCount = 1;
@@ -114,9 +115,9 @@ let intervalSpeed = 1;
     // make the idle stuff actually give stuff. tbh useless challenge. "code your game" okay
 
     const sUpgrades = [
-        { id: "a", name: "Improved Studies", descript: "Increases power gained per click by 1", cost: 10, baseCost: 10, bought: 0 },
-        { id: "b", name: "Passive Learning", descript: "Generates 1 power every 3 seconds", cost: 50, baseCost: 50, condition: "money50", bought: 0, interval: 3000, passive: 1 },
-        { id: "c", name: "Better Books", descript: "Generates 3 power every 5 seconds", cost: 250, baseCost: 250, condition: "money200", bought: 0, interval: 5000, passive: 3 },
+        { id: "a", name: "Improved Studies", descript: "Increases power gained per click by 1", cost: 10, baseCost: 10, bought: 0, type: "multi" },
+        { id: "b", name: "Passive Learning", descript: "Generates 1 power every 3 seconds", cost: 50, baseCost: 50, condition: "money50", bought: 0, interval: 3000, passive: 1, type: "multi" },
+        { id: "c", name: "Better Books", descript: "Generates 3 power every 5 seconds", cost: 250, baseCost: 250, condition: "money200", bought: 0, interval: 5000, passive: 3, type: "multi" },
         { id: "d", name: "The Academy", descript: "Unlocks schooling", cost: 5000, baseCost: 5000, condition: "money50", bought: 0, type: "single" }
         ];
 
@@ -130,7 +131,7 @@ document.getElementById("box").onclick = () => {
   box.classList.remove('bump');
     void box.offsetWidth;
     box.classList.add('bump');
-const gained = Math.round((add+upgrades) * multiplier);
+const gained = Math.round((add+upgrades) * multiplier * clickM);
 current = money + gained;
 money = current;
 checkConditions();
