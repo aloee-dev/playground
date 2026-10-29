@@ -138,6 +138,7 @@ let clicks = 0;
 let clickM = 1; // just multiplier for clicks
 let idleM = 1;
 let upgrades = 1;
+    let statupgrades = 0;
 let add = 0;
 let buyCount = 1;
 let strength = 0;
@@ -228,6 +229,7 @@ document.getElementById('count').textContent = `${money}`;
 
     function renderStats() {
         document.getElementById('stat-clicks').textContent = `Total Clicks: ${clicks}`;
+        document.getElementById('stat-upgrades').textContent = `Upgrades Bought: ${statupgrades}`;
     }
 
     function renderUpgrades() {
@@ -265,6 +267,7 @@ document.getElementById('count').textContent = `${money}`;
             if (money >= (upgrade.cost)) {
                 money -= (upgrade.cost);
                 upgrade.bought++;
+                statupgrades++;
                 }
             }
             if (upgrade.type === "multi") {
@@ -276,6 +279,7 @@ document.getElementById('count').textContent = `${money}`;
                 upgrade.cost = upgrade.cost + (10 * buyCount);
             }
             upgrade.bought = upgrade.bought + buyCount;
+            statupgrades = statupgrades + buyCount;
         }
             }
             document.getElementById('count').textContent = `${money}`;
