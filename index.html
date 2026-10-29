@@ -149,7 +149,7 @@ document.getElementById('count').textContent = `${money}`;
             if (u.type === "single" && u.bought >= 1) {
             return; 
         }
-            let displayCost = u.cost
+            let displayCost = u.cost;
             if (u.type !== "single") {
                 displayCost = u.cost * buyCount;
             }
