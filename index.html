@@ -83,8 +83,9 @@
     <div id="tab-list">
 <div id="tab1" class="tab-btn selected">Training</div>
 <div id="tab2" class="tab-btn locked">Schooling</div>
-<div id="tab3" class="tab-btn">Achievements</div>
-<div id="tab4" class="tab-btn">Stats</div>
+<div id="tab3" class="tab-btn locked">Mutagen Station</div>
+<div id="tab4" class="tab-btn">Achievements</div>
+<div id="tab5" class="tab-btn">Stats</div>
     </div>
 
         
@@ -109,6 +110,7 @@ let endurance = 0;
 let mental = 0;
 let speed = 0;
 let mutation = 0;
+let prestiges = 0;
 let intervalSpeed = 1;
 
 let inventory = new Map();
@@ -228,6 +230,7 @@ buyCount = 1;
         money = 0;
         current = 0;
         upgrades = 1;
+        prestiges++;
         renderUpgrades();
     }
 
