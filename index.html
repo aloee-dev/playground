@@ -314,6 +314,9 @@ buyCount = 1;
 });
 
     function calcMutagen (money) {
+        if (money < 10000000000) return 0;
+        const points = Math.log10(money) - 8;
+        return points;
     }
 
     function prestige() {
