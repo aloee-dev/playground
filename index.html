@@ -136,6 +136,7 @@ let current = 0;
 let multiplier = 1; // global
 let clicks = 0;
 let clickM = 1; // just multiplier for clicks
+let tempCM = 1;
 let idleM = 1;
 let upgrades = 1;
     let statupgrades = 0;
@@ -160,6 +161,7 @@ let currentTab = 1;
     // challenges i asked my brother to give:
     // if you don't press the button the last 60 seconds the button starts moving like the DVD thing
     // make the idle stuff actually give stuff. tbh useless challenge. "code your game" okay DONE
+    // every minute you get tokens for multipliers
 
     // ideas: add chests, add lore
 
@@ -167,7 +169,8 @@ let currentTab = 1;
         { id: "a", name: "Improved Studies", descript: "Increases power gained per click by 1", cost: 10, baseCost: 10, bought: 0, type: "multi" },
         { id: "b", name: "Passive Learning", descript: "Generates 1 power every 3 seconds", cost: 50, baseCost: 50, condition: "money50", bought: 0, interval: 3000, passive: 1, timerId: null, type: "multi" },
         { id: "c", name: "Better Books", descript: "Generates 3 power every 5 seconds", cost: 250, baseCost: 250, condition: "money200", bought: 0, interval: 5000, passive: 3, timerId: null, type: "multi" },
-        { id: "d", name: "The Academy", descript: "Unlocks schooling", cost: 5000, baseCost: 5000, condition: "money50", bought: 0, type: "single" }
+        { id: "d", name: "Crafts", descript: "Doubles power per click ", cost: 500, baseCost: 500, condition: "money200", bought: 0, type: "single" },
+        { id: "e", name: "The Academy", descript: "Unlocks schooling", cost: 5000, baseCost: 5000, condition: "money50", bought: 0, type: "single" }
         ];
 
     let conditions = {
@@ -221,7 +224,7 @@ document.getElementById("box").onclick = () => {
   box.classList.remove('bump');
     void box.offsetWidth;
     box.classList.add('bump');
-const gained = Math.round((add+upgrades) * multiplier * clickM);
+const gained = Math.round((add+upgrades) * multiplier * clickM * tempCM);
 current = money + gained;
 money = current;
     clicks++;
@@ -270,6 +273,9 @@ document.getElementById('count').textContent = `${money}`;
                 money -= (upgrade.cost);
                 upgrade.bought++;
                 statupgrades++;
+                if (upgrade.id === "d") {
+                    tempCM++;
+                }
                 }
             }
             if (upgrade.type === "multi") {
@@ -317,6 +323,7 @@ buyCount = 1;
         money = 0;
         current = 0;
         upgrades = 1;
+        tempCM = 1;
         prestiges++;
         renderUpgrades();
     }
