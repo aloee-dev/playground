@@ -116,8 +116,8 @@
             <div id="stat-clicks">Total Clicks: 0</div>
             <div id="stat-upgrades">Upgrades Bought: 0</div>
             <div id="stat-prestiges">Prestiges: 0</div>
-            <div id="stat-cmultiplier">Current Click Multiplier: 0</div>
-            <div id="stat-imultiplier">Current Idle Multiplier: 0</div>
+            <div id="stat-cmultiplier">Permanent Click Multiplier: 0</div>
+            <div id="stat-imultiplier">Permanent Idle Multiplier: 0</div>
         </div>
     </div>
             
@@ -135,9 +135,9 @@ let money = 0;
 let current = 0;
 let multiplier = 1; // global
 let clicks = 0;
-let clickM = 1; // just multiplier for clicks
+let clickM = 1; // perm
 let tempCM = 1;
-let idleM = 1;
+let idleM = 1; // perm
 let upgrades = 1;
     let statupgrades = 0;
 let add = 0;
@@ -235,6 +235,9 @@ document.getElementById('count').textContent = `${money}`;
     function renderStats() {
         document.getElementById('stat-clicks').textContent = `Total Clicks: ${clicks}`;
         document.getElementById('stat-upgrades').textContent = `Upgrades Bought: ${statupgrades}`;
+        document.getElementById('stat-prestiges').textContent = `Prestiges: ${prestiges}`;
+        document.getElementById('stat-cmultiplier').textContent = `Permanent Click Multiplier: ${clickM}`;
+        document.getElementById('stat-imultiplier').textContent = `Permanent Idle Multiplier: ${idleM}`;
     }
 
     function renderUpgrades() {
@@ -309,6 +312,9 @@ buyCount = 1;
             renderUpgrades();
         }
 });
+
+    function calcMutagen {
+    }
 
     function prestige() {
         sUpgrades.forEach(u => {
