@@ -132,6 +132,7 @@
 <script>
 
 let money = 0;
+let TPM = 10;
 let current = 0;
 let multiplier = 1; // global
 let clicks = 0;
@@ -142,12 +143,14 @@ let upgrades = 1;
     let statupgrades = 0;
 let add = 0;
 let buyCount = 1;
+    
 let strength = 0;
 let endurance = 0;
 let mental = 0;
 let speed = 0;
 let mutation = 0;
 let prestiges = 0;
+    
 let intervalSpeed = 1;
 
 let inventory = new Map();
@@ -177,6 +180,11 @@ let currentTab = 1;
         money50: false,
         money200: false
     };
+    
+// stuff that shouldn't reset on prestige
+    let globalFlags = {
+        prestiged: false
+    }
 
         const tab1 = document.getElementById('tab1');
         const tab2 = document.getElementById('tab2');
